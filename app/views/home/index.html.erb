@@ -1,0 +1,13 @@
+<h1>BJJ VIDEO REVIEW</h1>
+<% if current_user %>
+Hi <%=  current_user.first_name %><br></br>
+<%= link_to "Go To Reviews", reviews_url   %>
+<%  end %>
+<br></br>
+<% if !current_user %>
+<%= link_to "LOGIN", sign_in_path %>
+<%= link_to "SIGN UP", sign_up_new_path %>
+<%  end %>
+<%= link_to "LOGOUT", sign_out_path %>
+
+

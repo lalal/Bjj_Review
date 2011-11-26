@@ -1,0 +1,81 @@
+<%
+   for i in current_user.roles
+     if (i.role == "Admin")
+       admin = true
+     elsif (i.role == "Student")
+       student = true
+     elsif (i.role == "Reviewer")
+       reviewer = true
+     end
+   end
+%>
+
+<% if admin %>
+<h1>ADMIN</h1>
+<hr></hr>
+<% end %>
+
+<% if reviewer %>
+
+<h1>Review Summary For <%= current_user.first_name%> <%=  current_user.last_name %></h1>
+<h2>Completed Reviews</h2>
+<h2>In Progress Reviews</h2>
+<h2>Newly Requested Reviews</h2>
+
+<% @newlyRequested = Review.where(:state => "Waiting", :reviewer_id => current_user.id) %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @newlyRequested.each do |newReq| %>
+  <tr>
+    <td><%= newReq.title %></td>
+    <td><%= newReq.state %></td>
+    <td><%= link_to 'Show', newReq %></td>
+    <td><%= link_to 'Edit', edit_review_path(newReq) %></td>
+  </tr>
+<% end %>
+</table>
+<hr></hr>
+<% end %>
+
+<% if student %>
+
+<% if current_user.reviews.count > 0 %>
+<h1>Reviews for <%= current_user.first_name%> <%=  current_user.last_name %> </h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.title %></td>
+    <td><%= review.state %></td>
+    <td><%= link_to 'Show', review %></td>
+    <td><%= link_to 'Edit', edit_review_path(review) %></td>
+    <td><%= link_to 'Destroy', review, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br/>
+<% else %>
+<hr></hr>
+<% end %>
+<%= link_to 'New Review', new_review_path %>
+<br></br>
+<%= link_to "LOGOUT", sign_out_path %>
+
+<% end %>

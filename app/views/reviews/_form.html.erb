@@ -1,0 +1,50 @@
+<%= nested_form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <% @allUsers = User.all
+     reviewers = Array.new
+     for user in @allUsers
+       for role in user.roles
+         if (role.role == "Reviewer" )
+           reviewers.push user
+         end
+       end
+     end
+
+     for i in reviewers
+  %>
+<div class="field">
+  <%= f.radio_button :reviewer_id, i.id %>
+  <%= f.label :reviewer_id, i.first_name + " " + i.last_name, :value => i.id%>
+</div>
+<% end %>
+<div class="field">
+  <%= f.fields_for :questions do |builder| %>
+  <%#= render "question_fields", :f => builder %>
+  <%= builder.text_field :question %>
+  <%= builder.link_to_remove "Remove Question"%>
+  <% end %>
+  <p><%= f.link_to_add("Add Question", :questions)  %></p>
+</div>
+  <div class="actions">
+    <%= f.submit "Request Review", :class => 'button' %>
+  </div>
+<% end %>
