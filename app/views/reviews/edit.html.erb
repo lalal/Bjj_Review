@@ -1,6 +1,21 @@
 <h1>Editing review</h1>
 
-<%= render 'form' %>
+<%
+for i in current_user.roles
+  if (i.role == "Reviewer")
+    reviewer = true;
+  elsif (i.role == "Student")
+    student = true;
+  elsif (i.role == "Admin")
+    admin = true;
+  end
+end
+%>
 
+<% if reviewer %>
+  <%= render 'edit_reviewer_form' %>
+<% elsif student %>
+  <%= render 'edit_student_form' %>
+<% end %>
 <%= link_to 'Show', @review %> |
 <%= link_to 'Back', reviews_path %>

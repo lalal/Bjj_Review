@@ -6,16 +6,12 @@
 </p>
 
 <p>
-  <b>State:</b>
+  <b>Review Status:</b>
   <%= @review.state %>
 </p>
 
-<p>
-  <b>Url:</b>
-  <%= @review.url %>
-</p>
-
   <%
+      puts("URL: " + @review.url.to_s)
       parsedURL = URI.parse(@review.url)
       if (parsedURL.host = "www.youtube.com")
         if (parsedURL.query != nil)
@@ -31,7 +27,18 @@
 %>
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
-<br></br>
+<br></br><br></br>
+<b>Video Reviewer:</b>
+<% u = User.find(@review.reviewer_id) %>
+<%= u.first_name + " " + u.last_name %>
+<br></br><br></br>
+<%
+for i in @review.questions
+%>
+<b><%= i.question %></b>
+<br>Ans: <%= i.answer %></br>
+<br></br><br></br>
+<%end%>
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
 <br></br>

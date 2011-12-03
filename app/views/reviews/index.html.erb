@@ -18,16 +18,13 @@
 <% if reviewer %>
 
 <h1>Review Summary For <%= current_user.first_name%> <%=  current_user.last_name %></h1>
-<h2>Completed Reviews</h2>
-<h2>In Progress Reviews</h2>
-<h2>Newly Requested Reviews</h2>
 
-<% @newlyRequested = Review.where(:state => "Waiting", :reviewer_id => current_user.id) %>
+<% @newlyRequested = Review.where(:reviewer_id => current_user.id) %>
 
 <table>
   <tr>
     <th>Title</th>
-    <th>State</th>
+    <th>Review Status</th>
     <th></th>
     <th></th>
     <th></th>
@@ -37,12 +34,10 @@
   <tr>
     <td><%= newReq.title %></td>
     <td><%= newReq.state %></td>
-    <td><%= link_to 'Show', newReq %></td>
-    <td><%= link_to 'Edit', edit_review_path(newReq) %></td>
+    <td><%= link_to 'Do Review', edit_review_path(newReq) %></td>
   </tr>
 <% end %>
 </table>
-<hr></hr>
 <% end %>
 
 <% if student %>
@@ -53,7 +48,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>State</th>
+    <th>Review Status</th>
     <th></th>
     <th></th>
     <th></th>
@@ -65,16 +60,17 @@
     <td><%= review.state %></td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
-    <td><%= link_to 'Destroy', review, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Delete', review, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br/>
-<% else %>
-<hr></hr>
-<% end %>
 <%= link_to 'New Review', new_review_path %>
+<% else %>
+<br></br>
+<% end %>
+<br></br>
 <br></br>
 <%= link_to "LOGOUT", sign_out_path %>
 

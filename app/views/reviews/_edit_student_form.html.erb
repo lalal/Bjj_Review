@@ -31,7 +31,7 @@
 
      for i in reviewers
        selected = false;
-        if (params[:action] == "edit" && i.id == @review.reviewer_id)
+        if (i.id == @review.reviewer_id)
           selected = true;
         end
   %>
@@ -40,8 +40,7 @@
   <%= f.label :reviewer_id, i.first_name + " " + i.last_name, :value => i.id%>
 </div>
 <% end %>
-<% if (params[:action] == "edit") %>
-  <%
+<%
       parsedURL = URI.parse(@review.url)
       if (parsedURL.host = "www.youtube.com")
         if (parsedURL.query != nil)
@@ -58,7 +57,7 @@
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
 <br></br><br></br>
-<% end %>
+
 <div class="field">
   <%= f.fields_for :questions do |builder| %>
   <%= builder.text_field :question %>
@@ -67,6 +66,6 @@
   <p><%= f.link_to_add("Add Question", :questions)  %></p>
 </div>
   <div class="actions">
-    <%= f.submit params[:action] == "new" ? "Request Review" : "Update Review", :class => 'button' %>
+    <%= f.submit "Update Review", :class => 'button' %>
   </div>
 <% end %>

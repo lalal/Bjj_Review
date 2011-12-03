@@ -30,34 +30,11 @@
      end
 
      for i in reviewers
-       selected = false;
-        if (params[:action] == "edit" && i.id == @review.reviewer_id)
-          selected = true;
-        end
   %>
 <div class="field">
-  <%= f.radio_button :reviewer_id, i.id, :checked => selected %>
+  <%= f.radio_button :reviewer_id, i.id %>
   <%= f.label :reviewer_id, i.first_name + " " + i.last_name, :value => i.id%>
 </div>
-<% end %>
-<% if (params[:action] == "edit") %>
-  <%
-      parsedURL = URI.parse(@review.url)
-      if (parsedURL.host = "www.youtube.com")
-        if (parsedURL.query != nil)
-          queryParams = parsedURL.query
-          if (queryParams =~ /&/ )
-            queryParams = parsedURL.query.split("&")[0]
-          end
-         youtubeId = queryParams.split("=")[1]
-        else
-        youtubeId = parsedURL.path.split("/")[1]
-        end
-      end
-%>
-
-<iframe width="420" height="315" src="http://www.youtube.com/embed/<%= youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
-<br></br><br></br>
 <% end %>
 <div class="field">
   <%= f.fields_for :questions do |builder| %>
@@ -67,6 +44,6 @@
   <p><%= f.link_to_add("Add Question", :questions)  %></p>
 </div>
   <div class="actions">
-    <%= f.submit params[:action] == "new" ? "Request Review" : "Update Review", :class => 'button' %>
+    <%= f.submit "Request Review", :class => 'button' %>
   </div>
 <% end %>
