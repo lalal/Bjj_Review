@@ -1,4 +1,6 @@
 <%
+   a = current_user.roles
+   puts(a)
    for i in current_user.roles
      if (i.role == "Admin")
        admin = true
@@ -8,6 +10,10 @@
        reviewer = true
      end
    end
+
+   puts("admin = " + admin.to_s)
+   puts("student = " + student.to_s)
+   puts("reviewer = " + reviewer.to_s)
 %>
 
 <% if admin %>
@@ -66,10 +72,10 @@
 </table>
 
 <br/>
-<%= link_to 'New Review', new_review_path %>
 <% else %>
-<br></br>
+<br>You haven't requested any reviews yet</br><br></br>
 <% end %>
+<%= link_to 'New Review', new_review_path %>
 <br></br>
 <br></br>
 <%= link_to "LOGOUT", sign_out_path %>
