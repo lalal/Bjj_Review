@@ -53,7 +53,7 @@
 
 <table>
   <tr>
-    <th>Title</th>
+    <th align="left">Title</th>
     <th>Review Status</th>
     <th></th>
     <th></th>
@@ -64,8 +64,8 @@
   <tr>
     <td><%= review.title %></td>
     <td><%= review.state %></td>
-    <td><%= link_to 'Show', review %></td>
-    <td><%= link_to 'Edit', edit_review_path(review) %></td>
+    <td><% if review.state == "Complete"%> <%= link_to 'Show', review %> <%end%></td>
+    <td><% if review.state == "Queued"%> <%= link_to 'Edit', edit_review_path(review) %><%end%></td>
     <td><%= link_to 'Delete', review, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

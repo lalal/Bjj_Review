@@ -39,6 +39,13 @@ for i in @review.questions
 <br>Ans: <%= i.answer %></br>
 <br></br><br></br>
 <%end%>
+
+<b>Overall Comments:</b><br></br>
+<%= @review.overall_comments %><br></br>
+<br></br>
+<b>Suggested Drills:</b><br></br>
+<%= @review.suggested_drills %><br></br>
+<br></br>
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
 <br></br>
