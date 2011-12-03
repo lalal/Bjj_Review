@@ -42,6 +42,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
 
+    puts(params[:review])
     @review = Review.new(params[:review])
 
     @review.user = current_user
@@ -61,6 +62,8 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1.json
   def update
     @review = Review.find(params[:id])
+
+    puts(params[:review])
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
