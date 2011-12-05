@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-#    @reviews = Review.all
+    #    @reviews = Review.all
     @reviews = current_user.reviews
 
     respond_to do |format|
@@ -63,10 +63,16 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
 
-    puts(params[:review])
+    review_attrs = params[:review]
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
+
+        review_attrs[:questions_attributes].each do |index,question|
+          @question = Question.find(question[:id])
+          @question.update_attributes(question)
+        end
+
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
         format.json { head :ok }
       else
