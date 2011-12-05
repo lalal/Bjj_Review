@@ -69,8 +69,10 @@ class ReviewsController < ApplicationController
       if @review.update_attributes(params[:review])
 
         review_attrs[:questions_attributes].each do |index,question|
-          @question = Question.find(question[:id])
-          @question.update_attributes(question)
+          if (question[:answer])
+            @question = Question.find(question[:id])
+            @question.update_attributes(question)
+          end
         end
 
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
