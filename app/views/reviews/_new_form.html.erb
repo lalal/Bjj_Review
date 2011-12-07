@@ -16,9 +16,14 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label "Youtube URL:" %><br />
     <%= f.text_field :url %>
   </div>
+  <div class="field">
+    <%= f.label "Context:" %><br />
+    <%= f.text_area :context, :size => "40x10"  %>
+  </div>
+  <%= f.label "Select A Reviewer:" %><br></br>
   <% @allUsers = User.all
      reviewers = Array.new
      for user in @allUsers
