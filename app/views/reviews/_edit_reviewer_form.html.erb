@@ -14,26 +14,16 @@
   <div class="field">
     <h2><%= @review.title %><br /></h2>
   </div>
-  <%
-      parsedURL = URI.parse(@review.url)
-      if (parsedURL.host = "www.youtube.com")
-        if (parsedURL.query != nil)
-          queryParams = parsedURL.query
-          if (queryParams =~ /&/ )
-            queryParams = parsedURL.query.split("&")[0]
-          end
-         youtubeId = queryParams.split("=")[1]
-        else
-        youtubeId = parsedURL.path.split("/")[1]
-        end
-      end
+<%
+      youtubeId = parseYoutube(@review)
 %>
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>
 <br></br><br></br>
 <div class="field">
   <%= f.fields_for :questions do |builder| %>
-  <%= builder.text_field :question, :disabled => 'disabled'%>
+  <%# debugger %>
+  <%= builder.label builder.object.question%>
   <%= builder.label :answer %>
   <%= builder.text_field :answer %>
   <br></br>

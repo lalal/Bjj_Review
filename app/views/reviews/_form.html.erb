@@ -20,6 +20,9 @@
     <%= f.text_field :url %>
   </div>
   <% @allUsers = User.all
+
+  # Is there a faster or better way of getting all reviewers from the Users?
+
      reviewers = Array.new
      for user in @allUsers
        for role in user.roles
@@ -42,6 +45,9 @@
 <% end %>
 <% if (params[:action] == "edit") %>
   <%
+
+   # This logic is used in multiple places.  Where is the logical place to store it as a function?
+
       parsedURL = URI.parse(@review.url)
       if (parsedURL.host = "www.youtube.com")
         if (parsedURL.query != nil)

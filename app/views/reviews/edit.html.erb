@@ -12,6 +12,7 @@ for i in current_user.roles
 end
 %>
 
+<!-- What is the best way to approach different edit forms for different users? -->
 <% if reviewer %>
   <%= render 'edit_reviewer_form' %>
 <% elsif student %>

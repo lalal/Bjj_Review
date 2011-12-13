@@ -2,24 +2,34 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    #    @reviews = Review.all
+
+    if (current_user)
     @reviews = current_user.reviews
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reviews }
     end
+    else
+      redirect_to root_path
+    end
+    
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    if (current_user)
     @review = Review.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @review }
     end
+        else
+      redirect_to root_path
+    end
+
   end
 
   # GET /reviews/new
@@ -35,7 +45,12 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    if (current_user)
     @review = Review.find(params[:id])
+    else
+      redirect_to root_path
+    end
+
   end
 
   # POST /reviews
@@ -49,6 +64,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
+        ReviewMailer.review_requested(@review).deliver
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render json: @review, status: :created, location: @review }
       else

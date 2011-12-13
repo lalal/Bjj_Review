@@ -25,15 +25,9 @@
   </div>
   <%= f.label "Select A Reviewer:" %><br></br>
 
-  <% @allUsers = User.all
-     reviewers = Array.new
-     for user in @allUsers
-       for role in user.roles
-         if (role.role == "Reviewer" )
-           reviewers.push user
-         end
-       end
-     end
+  <%
+
+  reviewers = getAllReviewers()
 
      for i in reviewers
        selected = false;
@@ -47,18 +41,7 @@
 </div>
 <% end %>
 <%
-      parsedURL = URI.parse(@review.url)
-      if (parsedURL.host = "www.youtube.com")
-        if (parsedURL.query != nil)
-          queryParams = parsedURL.query
-          if (queryParams =~ /&/ )
-            queryParams = parsedURL.query.split("&")[0]
-          end
-         youtubeId = queryParams.split("=")[1]
-        else
-        youtubeId = parsedURL.path.split("/")[1]
-        end
-      end
+      youtubeId = parseYoutube(@review)
 %>
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/<%= youtubeId %>?rel=0" frameborder="0" allowfullscreen></iframe>

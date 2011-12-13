@@ -1,6 +1,5 @@
 <%
    a = current_user.roles
-   puts(a)
    for i in current_user.roles
      if (i.role == "Admin")
        admin = true
@@ -11,9 +10,6 @@
      end
    end
 
-   puts("admin = " + admin.to_s)
-   puts("student = " + student.to_s)
-   puts("reviewer = " + reviewer.to_s)
 %>
 
 <% if admin %>
