@@ -1,5 +1,5 @@
 class ReviewMailer < ActionMailer::Base
-  default from: "admin@bjjvideoreview.com"
+  default from: "bjjvideoreview@gmail.com"
 
   def review_requested(review)
     @reviewer = User.find_by_id(review.reviewer_id)
