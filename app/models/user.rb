@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :first_name, :last_name, :rank, :academy, :yrs_training, :presence => true
   has_many :reviews
   has_and_belongs_to_many :roles
 

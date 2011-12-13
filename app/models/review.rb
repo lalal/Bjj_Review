@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-
+  validates :title, :state, :url, :context, :reviewer_id, :presence => true
   belongs_to :user
   before_create :setState
   has_many :questions, :dependent => :destroy
