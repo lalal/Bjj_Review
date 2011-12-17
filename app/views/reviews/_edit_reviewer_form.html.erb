@@ -24,9 +24,9 @@
   <%= f.fields_for :questions do |builder| %>
   <%# debugger %>
   <%= builder.label builder.object.question%>
-  <%= builder.label :answer %>
-  <%= builder.text_field :answer %>
-  <br></br>
+<%#= builder.label :answer %><br></br>
+  <%= builder.text_area :answer, :size => "40x3" %>
+  <br></br><br></br>
   <% end %>
 </div>
 
