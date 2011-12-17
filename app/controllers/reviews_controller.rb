@@ -84,10 +84,12 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.update_attributes(params[:review])
 
-        review_attrs[:questions_attributes].each do |index,question|
-          if (question[:answer])
-            @question = Question.find(question[:id])
-            @question.update_attributes(question)
+        if (review_attrs[:questions_attributes])
+          review_attrs[:questions_attributes].each do |index,question|
+            if (question[:answer])
+              @question = Question.find(question[:id])
+              @question.update_attributes(question)
+            end
           end
         end
 
