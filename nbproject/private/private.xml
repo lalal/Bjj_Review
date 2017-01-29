@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/models/review.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/edit.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/_form.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/new.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/_new_form.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/models/user.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/_edit_student_form.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/_edit_reviewer_form.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/index.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/show.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/controllers/user_registration_controller.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/models/role.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/controllers/reviews_controller.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/home/index.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/layouts/application.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/controllers/home_controller.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/controllers/user_session_controller.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/config/environment.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/mailers/review_mailer.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/helpers/reviews_helper.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/helpers/application_helper.rb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/reviews/_question_fields.html.erb</file>
+        <file>file:/Users/aloklal/programming/rails/BjjReview/app/views/review_mailer/review_requested.html.erb</file>
+    </open-files>
 </project-private>

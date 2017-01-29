@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130180832) do
+ActiveRecord::Schema.define(:version => 20111206201724) do
 
   create_table "questions", :force => true do |t|
     t.string   "question"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20111130180832) do
     t.integer  "reviewer_id"
     t.text     "overall_comments"
     t.text     "suggested_drills"
+    t.text     "context"
   end
 
   create_table "roles", :force => true do |t|
